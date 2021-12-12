@@ -1,0 +1,50 @@
+version: '3.7'
+
+services:
+
+  database.authorization.oouch.htb:
+      container_name: database.authorization.oouch.htb
+      image: mariadb
+      restart: always
+      environment:
+        MYSQL_ROOT_PASSWORD: clarabibi2019!EasyCrackable!
+        MYSQL_DATABASE: Oouch
+        MYSQL_USER: qtc
+        MYSQL_PASSWORD: clarabibi2019!
+      volumes:
+        - ./db_auth:/var/lib/mysql
+
+  database.consumer.oouch.htb:
+    container_name: database.consumer.oouch.htb
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: clarabibi2019!EasyCrackable!
+      MYSQL_DATABASE: Consumer
+      MYSQL_USER: qtc
+      MYSQL_PASSWORD: clarabibi2019!
+    volumes:
+      - ./db_cons:/var/lib/mysql
+
+  authorization.oouch.htb:
+     container_name: authorization.oouch.htb
+     build: ./oouch
+     restart: always
+     volumes:
+       - ./oouch:/code
+     ports:
+       - "8000:8000"
+     depends_on:
+       - database.authorization.oouch.htb
+
+  consumer.oouch.htb:
+     container_name: consumer.oouch.htb
+     build: ./consumer
+     restart: always
+     volumes:
+       - ./consumer:/code
+       - /run/dbus/system_bus_socket:/run/dbus/system_bus_socket
+     ports:
+       - "5000:5000"
+     depends_on:
+       - database.consumer.oouch.htb

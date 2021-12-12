@@ -1,0 +1,7 @@
+This machine was created with the help of the following tutorials:
+
+  http://0pointer.net/blog/the-new-sd-bus-api-of-systemd.html
+  https://django-oauth-toolkit.readthedocs.io/en/latest/
+  https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world
+
+Big thanks to all, who share their knowledge with other people!

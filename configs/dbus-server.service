@@ -1,0 +1,13 @@
+[Unit]
+Description=dbus-server
+
+[Service]
+WorkingDirectory=/root
+ExecStart=/root/dbus-server
+TimeoutStartSec=0
+Restart=on-failure
+StartLimitIntervalSec=60
+StartLimitBurst=3
+
+[Install]
+WantedBy=multi-user.target

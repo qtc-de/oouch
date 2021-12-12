@@ -1,0 +1,23 @@
+{% extends 'authorization/base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<h2 style="margin-top: 2cm">Logged in as: {{ user.username }}</h2>
+<p>You have successfully authenticated and should be able to use the authorization server :D</p>
+<p>Relevant endpoints are:</p>
+<ul>
+  <li><a href="/oauth/authorize">/oauth/authorize</a></li>
+  <li><a href="/oauth/token">/oauth/token</a></li>
+</ul>
+<p>Currently there are no options to modify profile information or for getting an overview of all authorized applications. We will implement this soon.</p>
+
+{% else %}
+  <p>Oouch is a simple authorization server based on the Oauth2 protocol. Instead of managing credentials for multiple applications, just create an Oouch 
+  account and use it for login on supported applications. Our platform provides maximum comfort and conforms to the highest security standards.</p>
+  <p>You have not signed it yet. Please choose between the following options:</p>
+  <p>Login at: <a href="{% url 'login' %}">login</a></p>
+  <p>Or signup for a new account: <a href="{% url 'signup' %}">register</a></p>
+  <p>Notice: For registration we are asking you for SSH credentials to your Oouch orchestration server. This is only required if you want to use the Oouch orchestration
+  application. Since this one is currently under development, you want most likely to ignore the SSH related fields inside of the registration form.</p>
+{% endif %}
+{% endblock %}
